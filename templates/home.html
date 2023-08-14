@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{{ url_for('static', filename='favicon-32x32.png') }}" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome Icons -->
+    <style>
+
+        .hero-header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background-image.jpg') center/cover no-repeat;
+            color: #FFF6E0;
+            text-align: center;
+            padding: 100px 0;
+        }
+        .hero-content {
+            margin-bottom: 30px;
+        }
+        .cloud-icon {
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+          .the-search-bar-div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .search-container {
+      display: flex;
+      background-color: #f2f2f2;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-container input[type=text] {
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      width: 300px;
+      outline: none;
+    }
+
+    .search-container button {
+      background-color: #ddd;
+      border: none;
+      color: #000;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .search-container button:hover {
+      background-color: #ccc;
+    }
+
+    @media screen and (max-width: 600px) {
+      .the-search-bar-div {
+        padding: 10px;
+      }
+
+      .search-container {
+        width: 100%;
+        max-width: 300px;
+        border-radius: 20px;
+      }
+
+      .search-container input[type=text] {
+        width: 100%;
+        padding: 10px;
+      }
+
+      .search-container button {
+        padding: 10px;
+      }
+
+          .detail-box {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar-->
+    {% include 'navbar.html' %}
+
+    <!-- Hero Section-->
+    <div class="hero-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="hero-content">
+                        <h1 class="display-3">
+                            Check <b>Weather</b><br>via One Prompt
+                            <img src="{{ url_for('static', filename='cloudy.png') }}" alt="Cloudy Icon" width="70" height="70" class="cloud-icon">
+                        </h1>
+                        <p>Tap on Search and see what's happening</p>
+                             <div class="the-search-bar-div">
+                                      <div class="search-container">
+                                        <form action="/" method="POST">
+                                          <input type="text" placeholder="Enter City Name.." name="search_query">
+                                         <button type="submit" onclick="scrollToInformationSection()"><i class="fa fa-search"></i></button>
+
+                                        </form>
+
+
+                                      </div>
+                             </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-box">
+    <div  id="information-section" class="details">
+        {% if weather_info %}
+        <h2><center>Weather Information:</center></h2>
+        <p><b><center>Temperature:</b> {{ weather_info.temperature }}°C</center></p>
+        <p><b><center>Humidity:</b> {{ weather_info.humidity }}%</center></p>
+        <p><b><center>Wind Speed:</b> {{ weather_info.wind_speed }} m/s</center></p>
+        {% endif %}
+    </div>
+    </div>
+
+
+<!-- Java Script Code-->
+    <script>
+function scrollToInformationSection() {
+    // Scroll to the information section
+    const informationSection = document.getElementById("information-section");
+    if (informationSection) {
+        informationSection.scrollIntoView({ behavior: "smooth" });
+    }
+}
+</script>
+
+
+<!-- Footer-->
+    {% include 'footer.html' %}
+
+
+</body>
+</html>
+
