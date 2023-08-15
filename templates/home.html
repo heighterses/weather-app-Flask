@@ -123,16 +123,28 @@
         </div>
     </div>
 
+    <!-- Weather information box-->
+
     <div class="detail-box">
     <div  id="information-section" class="details">
         {% if weather_info %}
+
+
+
+
         <h2><center>Weather Information:</center></h2>
+         <p><b><center>City:</b> {{weather_info.city}}</center></p>
         <p><b><center>Temperature:</b> {{ weather_info.temperature }}°C</center></p>
         <p><b><center>Humidity:</b> {{ weather_info.humidity }}%</center></p>
         <p><b><center>Wind Speed:</b> {{ weather_info.wind_speed }} m/s</center></p>
+
+
+
         {% endif %}
     </div>
     </div>
+
+    <!-- Weather information box closed-->
 
 
 <!-- Java Script Code-->

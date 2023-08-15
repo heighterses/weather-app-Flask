@@ -43,6 +43,7 @@ def home():
         print("Wind:", wind)  # Add this print statement
 
         weather_info = {
+            'city': city_name,
             'temperature': temperature,
             'humidity': humidity,
             'wind_speed': wind["speed"]
